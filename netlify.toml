@@ -1,0 +1,20 @@
+# Netlify設定ファイル
+
+# ビルド設定
+[build]
+  publish = "."
+  command = "echo 'No build needed for static site'"
+
+# リダイレクトとヘッダー
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer-when-downgrade"
+
+# 404ページ
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

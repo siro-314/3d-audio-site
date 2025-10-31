@@ -1,0 +1,627 @@
+/* ============================================
+   CSS Variables & Reset
+   ============================================ */
+:root {
+    --cream: #FFFEF5;
+    --cream-dark: #F5F4EB;
+    --dark: #333;
+    --gray: #666;
+    --light-gray: #999;
+    --border: #ddd;
+    --primary: #4A90E2;
+    --primary-hover: #357ABD;
+    --secondary: #7B68EE;
+    --secondary-hover: #6A5ACD;
+    --success: #28A745;
+    --success-hover: #218838;
+    --danger: #DC3545;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-lg: rgba(0, 0, 0, 0.15);
+    
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.6;
+    padding: var(--spacing-md);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   Terms Link (Always Visible)
+   ============================================ */
+.terms-link-wrapper {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.terms-link {
+    font-size: 13px;
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.terms-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* ============================================
+   Upload Section (Always Visible)
+   ============================================ */
+.upload-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.upload-area {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background: white;
+    padding: var(--spacing-xl);
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--primary);
+    background: var(--cream);
+}
+
+.upload-area.drag-over {
+    border-color: var(--primary);
+    background: var(--cream-dark);
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 48px;
+}
+
+.upload-text {
+    font-size: 16px;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: var(--light-gray);
+}
+
+.file-list {
+    margin-top: var(--spacing-md);
+}
+
+.file-item {
+    background: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.file-name {
+    font-size: 14px;
+    color: var(--dark);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-remove {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 var(--spacing-xs);
+    transition: var(--transition);
+}
+
+.file-remove:hover {
+    color: var(--danger);
+    transform: scale(1.1);
+}
+
+/* ============================================
+   Password Section (Always Visible)
+   ============================================ */
+.password-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.password-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    background: white;
+    transition: var(--transition);
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* ============================================
+   Slider Section (Show after file upload)
+   ============================================ */
+.slider-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.slider-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.slider-container {
+    position: relative;
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--cream-dark);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.slider::-moz-range-thumb:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+.slider-marker {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.slider-value {
+    display: block;
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+/* ============================================
+   Control Section (Show after file upload)
+   ============================================ */
+.control-section {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* ============================================
+   Playback Section (Show after processing)
+   ============================================ */
+.playback-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.audio-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.progress-wrapper {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.1s linear;
+    width: 0%;
+}
+
+.progress-text {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-lg);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--secondary-hover);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+    background: var(--success-hover);
+}
+
+.btn-large {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 16px;
+}
+
+/* ============================================
+   Modal
+   ============================================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px var(--shadow-lg);
+}
+
+.modal-content h2 {
+    margin-bottom: var(--spacing-lg);
+    font-size: 24px;
+    color: var(--dark);
+}
+
+.modal-content h3 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    font-size: 16px;
+    color: var(--dark);
+}
+
+.terms-content {
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.8;
+}
+
+.terms-content ul {
+    list-style: none;
+    padding-left: var(--spacing-md);
+}
+
+.terms-content li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+.terms-content li::before {
+    content: \"•\";
+    position: absolute;
+    left: calc(-1 * var(--spacing-md));
+    color: var(--primary);
+}
+
+.terms-content small {
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.terms-note {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--cream-dark);
+    border-left: 3px solid var(--primary);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--dark);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 640px) {
+    .container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    header h1 {
+        font-size: 24px;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .upload-area {
+        padding: var(--spacing-lg);
+    }
+    
+    .upload-icon {
+        font-size: 36px;
+    }
+    
+    .audio-controls {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .modal-content {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* ============================================
+   Loading & Processing States
+   ============================================ */
+.processing {
+    position: relative;
+    pointer-events: none;
+}
+
+.processing::after {
+    content: \"\";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--cream-dark);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+/* ============================================
+   Password Button (柔らかい緑)
+   ============================================ */
+.btn-password {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-password:hover:not(:disabled) {
+    background: #45a049;
+}
+
+/* ============================================
+   Password Modal
+   ============================================ */
+.modal-small {
+    max-width: 350px;
+}
+
+.password-modal-content {
+    text-align: center;
+}
+
+.password-modal-content p {
+    margin-bottom: var(--spacing-md);
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.password-modal-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 8px;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+}
+
+.password-modal-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.password-modal-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.password-modal-buttons .btn {
+    flex: 1;
+}
+
+
+/* ============================================
+   Editable Volume Value
+   ============================================ */
+.slider-value.editable {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.slider-value.editable:hover {
+    background: var(--cream-dark);
+}
+
+/* ============================================
+   Clickable Progress Bar
+   ============================================ */
+.progress-bar {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.progress-bar:hover {
+    transform: scaleY(1.2);
+}

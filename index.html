@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ブラウザ上で音源に立体音響エフェクトを適用できるサービス">
+    <title>立体音響エフェクト</title>
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- タイトル削除：ユーザーにメリットなし -->
+        </header>
+
+        <!-- 規約再確認リンク（常時表示） -->
+        <div class="terms-link-wrapper">
+            <a href="#" id="terms-recheck-link" class="terms-link">利用規約を確認する</a>
+        </div>
+
+        <main>
+            <!-- ファイルアップロードエリア（常時表示） -->
+            <section class="upload-section">
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="file-input" accept="audio/*" hidden>
+                    <label for="file-input" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span class="upload-text">音声ファイルを選択またはドロップ</span>
+                        <span class="upload-hint">MP3, WAV, M4A, OGG, WebM, FLAC</span>
+                    </label>
+                </div>
+                <div id="file-list" class="file-list"></div>
+            </section>
+
+            <!-- パスワードボタン（常時表示、Phase 3用） -->
+            <section class="password-section">
+                <button id="password-btn" class="btn btn-password">パスワード</button>
+            </section>
+
+            <!-- 音量スライダー（ファイル選択後に表示） -->
+            <section class="slider-section hidden" id="volume-section">
+                <label for="volume-slider" class="slider-label">
+                    音量
+                </label>
+                <div class="slider-container">
+                    <input 
+                        type="range" 
+                        id="volume-slider" 
+                        class="slider" 
+                        min="0" 
+                        max="5" 
+                        step="0.1" 
+                        value="1"
+                    >
+                    <span id="volume-value" class="slider-value editable" title="クリックで直接入力">100%</span>
+                </div>
+            </section>
+
+            <!-- 処理ボタン（ファイル選択後に表示） -->
+            <section class="control-section hidden" id="control-section">
+                <button id="process-btn" class="btn btn-primary">エフェクトを適用</button>
+            </section>
+
+            <!-- 再生・ダウンロードボタン（処理完了後に表示） -->
+            <section class="playback-section hidden" id="playback-section">
+                <div class="audio-controls">
+                    <button id="play-btn" class="btn btn-secondary">▶ 再生</button>
+                    <button id="pause-btn" class="btn btn-secondary hidden">⏸ 一時停止</button>
+                    <!-- ダウンロードはPhase 2で実装 -->
+                </div>
+                <div class="progress-wrapper hidden" id="progress-wrapper">
+                    <div class="progress-bar" id="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <span id="progress-text" class="progress-text">0:00 / 0:00</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 利用規約モーダル -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <h2>利用規約</h2>
+            <div class="terms-content">
+                <h3>【禁止事項】</h3>
+                <ul>
+                    <li>違法にダウンロードされた音源の使用</li>
+                    <li>YouTube等からダウンロードした音源<br>
+                        <small>（例：y2mate、4K Video Downloader等）</small>
+                    </li>
+                    <li>著作権者の許可なく入手した音源</li>
+                </ul>
+
+                <h3>【正規の音源】</h3>
+                <ul>
+                    <li>自作音源</li>
+                    <li>購入した音楽（iTunes、Amazon等）</li>
+                    <li>著作権フリー音源</li>
+                    <li>ストリーミングオフライン保存（Spotify Premium等）</li>
+                </ul>
+
+                <p class="terms-note">
+                    本サービスは音源の出所を確認しません。<br>
+                    ユーザーの責任で使用してください。
+                </p>
+            </div>
+            <button id="terms-agree-btn" class="btn btn-primary btn-large">同意して始める</button>
+        </div>
+    </div>
+
+    <!-- パスワード入力モーダル -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content modal-small">
+            <h2>パスワード</h2>
+            <div class="password-modal-content">
+                <input 
+                    type="text" 
+                    id="password-modal-input" 
+                    class="password-modal-input" 
+                    placeholder="0000" 
+                    maxlength="4"
+                    pattern="[0-9]{4}"
+                    inputmode="numeric"
+                >
+                <div class="password-modal-buttons">
+                    <button id="password-submit-btn" class="btn btn-primary">確認</button>
+                    <button id="password-cancel-btn" class="btn btn-secondary">キャンセル</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScriptモジュール -->
+    <script src="src/js/config.js"></script>
+    <script src="src/js/storage-manager.js"></script>
+    <script src="src/js/audio-processor.js"></script>
+    <script src="src/js/ui-manager.js"></script>
+    <script src="src/js/state-manager.js"></script>
+    <script src="src/js/main.js"></script>
+</body>
+</html>
