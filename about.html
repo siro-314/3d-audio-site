@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>このサイトについて | 立体音響エフェクト</title>
+    <link rel="stylesheet" href="src/css/main.css">
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .about-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 2px 8px var(--shadow);
+            line-height: 1.8;
+        }
+        .about-content h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        .about-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .about-content li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <a href="/" class="back-link">← トップページに戻る</a>
+        
+        <h1>このサイトについて</h1>
+        
+        <div class="about-content">
+            <h2>サイトの目的</h2>
+            <p>「立体音響エフェクト」は、ブラウザ上で簡単に音源に立体音響エフェクトを適用できる無料Webサービスです。</p>
+            <p>YouTubeで立体音響チャンネルを運営していましたが、コンテンツIDの制約により収益化が困難となったため、視聴者の皆様が自由に音源を加工できるツールとして本サイトを立ち上げました。</p>
+
+            <h2>主な機能</h2>
+            <ul>
+                <li>音声ファイルへのエコー・リバーブエフェクトの適用</li>
+                <li>人気アプリ「はやえもん」のエフェクト設定を再現</li>
+                <li>音量調整機能（0%〜500%）</li>
+                <li>ループ再生・シーク機能</li>
+                <li>完全ブラウザ完結型（サーバーに音源を保存しません）</li>
+            </ul>
+
+            <h2>対応ファイル形式</h2>
+            <p>MP3、WAV、M4A、OGG、WebM、FLAC</p>
+
+            <h2>技術仕様</h2>
+            <p>本サイトはWeb Audio APIを使用し、完全にブラウザ内で音声処理を行います。アップロードされた音源はサーバーに送信されず、すべてクライアント側で処理されるため、プライバシーが保護されます。</p>
+
+            <h2>運営者</h2>
+            <p>元YouTube立体音響チャンネル運営者（フォロワー1300名）</p>
+
+            <h2>お問い合わせ</h2>
+            <p>ご質問・ご要望は<a href="/contact.html" style="color: var(--primary);">お問い合わせページ</a>よりご連絡ください。</p>
+        </div>
+    </div>
+</body>
+</html>
