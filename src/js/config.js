@@ -22,15 +22,24 @@ const CONFIG = {
         }
     },
 
-    // ファイル対応形式
+    // ファイル対応形式（音声＋動画）
     SUPPORTED_FORMATS: [
+        // 音声形式
         'audio/mpeg',      // MP3
         'audio/wav',       // WAV
         'audio/mp4',       // M4A
         'audio/x-m4a',     // M4A (alternative)
+        'audio/aac',       // AAC
         'audio/ogg',       // OGG
-        'audio/webm',      // WebM
-        'audio/flac'       // FLAC
+        'audio/webm',      // WebM Audio
+        'audio/flac',      // FLAC
+        'audio/opus',      // Opus
+        // 動画形式（音声トラックを抽出）
+        'video/mp4',       // MP4
+        'video/webm',      // WebM Video
+        'video/quicktime', // MOV
+        'video/x-msvideo', // AVI
+        'video/x-matroska' // MKV
     ],
 
     // LocalStorage keys
