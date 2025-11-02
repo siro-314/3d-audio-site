@@ -15,69 +15,166 @@
             <!-- タイトル削除：ユーザーにメリットなし -->
         </header>
 
-        <!-- 規約再確認リンク（常時表示） -->
-        <div class="terms-link-wrapper">
-            <a href="#" id="terms-recheck-link" class="terms-link">利用規約を確認する</a>
+        <!-- タブナビゲーション -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="tool">ツール</button>
+            <button class="tab-btn" data-tab="about">このサイトについて</button>
+            <button class="tab-btn" data-tab="privacy">プライバシーポリシー</button>
+            <button class="tab-btn" data-tab="contact">お問い合わせ</button>
+        </nav>
+
+        <!-- タブコンテンツ -->
+        <div class="tab-content-wrapper">
+            <!-- ツールタブ（デフォルト表示） -->
+            <div class="tab-content active" id="tool-tab">
+                <!-- 規約再確認リンク（常時表示） -->
+                <div class="terms-link-wrapper">
+                    <a href="#" id="terms-recheck-link" class="terms-link">利用規約を確認する</a>
+                </div>
+
+                <main>
+                    <!-- ファイルアップロードエリア（常時表示） -->
+                    <section class="upload-section">
+                        <div class="upload-area" id="upload-area">
+                            <input type="file" id="file-input" accept=".mp3,.wav,.m4a,.aac,.ogg,.oga,.opus,.webm,.flac,.mp4,.mov,.avi,.mkv" hidden>
+                            <label for="file-input" class="upload-label">
+                                <span class="upload-icon">📁</span>
+                                <span class="upload-text">音声・動画ファイルを選択またはドロップ</span>
+                                <span class="upload-hint">MP3, WAV, M4A, OGG, WebM, FLAC, MP4等</span>
+                            </label>
+                        </div>
+                        <div id="file-list" class="file-list"></div>
+                    </section>
+
+                    <!-- パスワードボタン（常時表示、Phase 3用） -->
+                    <section class="password-section">
+                        <button id="password-btn" class="btn btn-password">パスワード</button>
+                    </section>
+
+                    <!-- 音量スライダー（ファイル選択後に表示） -->
+                    <section class="slider-section hidden" id="volume-section">
+                        <label for="volume-slider" class="slider-label">
+                            音量
+                        </label>
+                        <div class="slider-container">
+                            <input 
+                                type="range" 
+                                id="volume-slider" 
+                                class="slider" 
+                                min="0" 
+                                max="5" 
+                                step="0.1" 
+                                value="1"
+                            >
+                            <span id="volume-value" class="slider-value editable" title="クリックで直接入力">100%</span>
+                        </div>
+                    </section>
+
+                    <!-- 処理ボタン（ファイル選択後に表示） -->
+                    <section class="control-section hidden" id="control-section">
+                        <button id="process-btn" class="btn btn-primary">エフェクトを適用</button>
+                    </section>
+
+                    <!-- 再生・ダウンロードボタン（処理完了後に表示） -->
+                    <section class="playback-section hidden" id="playback-section">
+                        <div class="audio-controls">
+                            <button id="play-btn" class="btn btn-secondary">▶ 再生</button>
+                            <button id="pause-btn" class="btn btn-secondary hidden">⏸ 一時停止</button>
+                            <!-- ダウンロードはPhase 2で実装 -->
+                        </div>
+                        <div class="progress-wrapper hidden" id="progress-wrapper">
+                            <div class="progress-bar" id="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                            <span id="progress-text" class="progress-text">0:00 / 0:00</span>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+            <!-- このサイトについてタブ -->
+            <div class="tab-content" id="about-tab">
+                <div class="info-content">
+                    <h2>サイトの目的</h2>
+                    <p>ブラウザ上で簡単に音源に立体音響にできる無料Webサービスです。</p>
+                    <p>YouTubeで立体音響チャンネルを運営していましたが、継続が困難となったため、視聴者の皆様が自由に音源を加工できるツールとして本サイトを立ち上げました。</p>
+
+                    <h2>主な機能</h2>
+                    <ul>
+                        <li>音声ファイルの立体音響化</li>
+                        <li>音量調整機能（0%〜500%）</li>
+                        <li>ループ再生・シーク機能</li>
+                        <li>完全ブラウザ完結型（サーバーに音源を保存しません）</li>
+                    </ul>
+
+                    <h2>対応ファイル形式</h2>
+                    <p>MP3、WAV、M4A、OGG、WebM、FLAC</p>
+
+                    <h2>技術仕様</h2>
+                    <p>本サイトはWeb Audio APIを使用し、完全にブラウザ内で音声処理を行います。アップロードされた音源はサーバーに送信されず、すべてクライアント側で処理されるため、プライバシーが保護されます。</p>
+
+                    <h2>運営者</h2>
+                    <p>フクロウ立体音響</p>
+                </div>
+            </div>
+
+            <!-- プライバシーポリシータブ -->
+            <div class="tab-content" id="privacy-tab">
+                <div class="info-content">
+                    <p>本サイト「立体音響エフェクト」（以下、「当サイト」）では、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+
+                    <h2>1. 個人情報の取得</h2>
+                    <p>当サイトでは、お問い合わせの際に氏名・メールアドレス等の個人情報をご登録いただく場合があります。これらの個人情報は、お問い合わせへの回答や必要な情報をご連絡するために利用するものであり、これらの目的以外では利用しません。</p>
+
+                    <h2>2. 広告配信について</h2>
+                    <h3>Google AdSense</h3>
+                    <p>当サイトでは、第三者配信の広告サービス「Google AdSense（グーグルアドセンス）」を利用しています。</p>
+                    <p>広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookie（クッキー）を使用することがあります。Cookieを使用することで、ユーザーが過去に当サイトや他のサイトにアクセスした際の情報に基づいて広告を配信します。</p>
+                    <p>ユーザーは、広告設定で個人に合わせた広告（パーソナライズド広告）を無効にすることができます。その設定をする場合は、<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Googleの広告設定ページ</a>をご覧ください。</p>
+                    <p>また、第三者配信による広告配信を無効にしていない場合は、第三者配信事業者や広告ネットワークの配信する広告がサイトに表示されることがあります。詳しくは、<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">Googleのポリシーと規約ページ</a>をご覧ください。</p>
+
+                    <h2>3. アクセス解析ツールについて</h2>
+                    <p>当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。</p>
+                    <p>このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。</p>
+                    <p>この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関して、詳しくは<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener">Googleアナリティクス利用規約</a>をご覧ください。</p>
+
+                    <h2>4. 音声データの取り扱い</h2>
+                    <p>当サイトでアップロードされた音声ファイルは、すべてユーザーのブラウザ内で処理され、サーバーには一切保存されません。音声処理は完全にブラウザ内で完結し、外部に送信されることはありません。</p>
+
+                    <h2>5. 免責事項</h2>
+                    <p>当サイトのコンテンツ・情報について、できる限り正確な情報を提供するよう努めておりますが、正確性や安全性を保証するものではありません。当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
+                    <p>当サイトからリンクやバナーなどによって他のサイトに移動した場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
+
+                    <h2>6. 著作権・肖像権</h2>
+                    <p>当サイトで掲載している文章や画像などにつきましては、無断転載することを禁止します。</p>
+                    <p>当サイトは著作権や肖像権の侵害を目的としたものではありません。著作権や肖像権に関して問題がございましたら、お問い合わせフォームよりご連絡ください。迅速に対応いたします。</p>
+
+                    <h2>7. リンク</h2>
+                    <p>当サイトは基本的にリンクフリーです。リンクを行う場合の許可や連絡は不要です。</p>
+
+                    <h2>8. プライバシーポリシーの変更</h2>
+                    <p>当サイトは、個人情報に関して適用される日本の法令を遵守するとともに、本ポリシーの内容を適宜見直しその改善に努めます。</p>
+                    <p>修正された最新のプライバシーポリシーは常に本ページにて開示されます。</p>
+
+                    <p style="margin-top: 40px; text-align: right;">
+                        制定日：2025年10月31日
+                    </p>
+                </div>
+            </div>
+
+            <!-- お問い合わせタブ -->
+            <div class="tab-content" id="contact-tab">
+                <div class="info-content">
+                    <p>当サイトに関するお問い合わせは、以下のYouTubeチャンネルよりご連絡ください。</p>
+                    
+                    <p style="font-size: 18px; margin-top: 20px;">
+                        <a href="https://www.youtube.com/@%E3%83%A9%E3%82%A4%E3%83%96%E9%9F%B3%E9%9F%BF" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                            フクロウ立体音響 YouTubeチャンネル
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <main>
-            <!-- ファイルアップロードエリア（常時表示） -->
-            <section class="upload-section">
-                <div class="upload-area" id="upload-area">
-                    <input type="file" id="file-input" accept=".mp3,.wav,.m4a,.aac,.ogg,.oga,.opus,.webm,.flac,.mp4,.mov,.avi,.mkv" hidden>
-                    <label for="file-input" class="upload-label">
-                        <span class="upload-icon">📁</span>
-                        <span class="upload-text">音声・動画ファイルを選択またはドロップ</span>
-                        <span class="upload-hint">MP3, WAV, M4A, OGG, WebM, FLAC, MP4等</span>
-                    </label>
-                </div>
-                <div id="file-list" class="file-list"></div>
-            </section>
-
-            <!-- パスワードボタン（常時表示、Phase 3用） -->
-            <section class="password-section">
-                <button id="password-btn" class="btn btn-password">パスワード</button>
-            </section>
-
-            <!-- 音量スライダー（ファイル選択後に表示） -->
-            <section class="slider-section hidden" id="volume-section">
-                <label for="volume-slider" class="slider-label">
-                    音量
-                </label>
-                <div class="slider-container">
-                    <input 
-                        type="range" 
-                        id="volume-slider" 
-                        class="slider" 
-                        min="0" 
-                        max="5" 
-                        step="0.1" 
-                        value="1"
-                    >
-                    <span id="volume-value" class="slider-value editable" title="クリックで直接入力">100%</span>
-                </div>
-            </section>
-
-            <!-- 処理ボタン（ファイル選択後に表示） -->
-            <section class="control-section hidden" id="control-section">
-                <button id="process-btn" class="btn btn-primary">エフェクトを適用</button>
-            </section>
-
-            <!-- 再生・ダウンロードボタン（処理完了後に表示） -->
-            <section class="playback-section hidden" id="playback-section">
-                <div class="audio-controls">
-                    <button id="play-btn" class="btn btn-secondary">▶ 再生</button>
-                    <button id="pause-btn" class="btn btn-secondary hidden">⏸ 一時停止</button>
-                    <!-- ダウンロードはPhase 2で実装 -->
-                </div>
-                <div class="progress-wrapper hidden" id="progress-wrapper">
-                    <div class="progress-bar" id="progress-bar">
-                        <div id="progress-fill" class="progress-fill"></div>
-                    </div>
-                    <span id="progress-text" class="progress-text">0:00 / 0:00</span>
-                </div>
-            </section>
-        </main>
     </div>
 
     <!-- 利用規約モーダル -->
@@ -135,11 +232,6 @@
 
     <!-- フッター -->
     <footer style="text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--border); font-size: 14px; color: var(--gray);">
-        <nav style="margin-bottom: 15px;">
-            <a href="/about.html" style="color: var(--gray); text-decoration: none; margin: 0 15px;">このサイトについて</a>
-            <a href="/privacy-policy.html" style="color: var(--gray); text-decoration: none; margin: 0 15px;">プライバシーポリシー</a>
-            <a href="/contact.html" style="color: var(--gray); text-decoration: none; margin: 0 15px;">お問い合わせ</a>
-        </nav>
         <p style="margin: 0;">© 2025 立体音響エフェクト</p>
     </footer>
 
@@ -149,6 +241,7 @@
     <script src="src/js/audio-processor.js"></script>
     <script src="src/js/ui-manager.js"></script>
     <script src="src/js/state-manager.js"></script>
+    <script src="src/js/tabs.js"></script>
     <script src="src/js/main.js"></script>
 </body>
 </html>
